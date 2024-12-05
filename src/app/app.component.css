@@ -1,0 +1,62 @@
+.title-container {
+  text-align: center;
+  padding: 20px;
+  background-color: none; /* Optional background for contrast */
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000; /* Ensure it stays on top of other elements */
+}
+
+h1 {
+  margin: 0;
+  font-size: 3em;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  color: rgb(241, 236, 94)
+}
+
+.components-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.component-container {
+  width: 25vw; /* adjust the width to fit your requirements */
+  height: 100vh;
+  overflow: hidden;
+}
+
+.custom-navbar-brand {
+  font: 2em sans-serif;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: #c7f48b;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(203, 59, 59, 0.3);
+}
+
+.nav-link {
+  color: #c4e993;
+  font: 1em sans-serif;
+  text-shadow: 2px 2px 4px rgba(203, 59, 59, 0.3);
+}
+
+.nav-link:hover { 
+  color: #90c748;
+  font: 1em sans-serif;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(203, 59, 59, 0.3);
+}
+
+.offcanvas-title {
+  color: #c7f48b;
+  font: 1.5em sans-serif;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(203, 59, 59, 0.3);
+}
