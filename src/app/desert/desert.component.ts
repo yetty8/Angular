@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-desert',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './desert.component.html',
-  styleUrl: './desert.component.css'
+  styleUrls: ['./desert.component.css']
 })
-export class DesertComponent {
-
-}
+export class DesertComponent {}

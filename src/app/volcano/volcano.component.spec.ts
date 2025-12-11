@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { VolcanoComponent } from './volcano.component';
 
 describe('VolcanoComponent', () => {
@@ -9,8 +8,7 @@ describe('VolcanoComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [VolcanoComponent]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(VolcanoComponent);
     component = fixture.componentInstance;

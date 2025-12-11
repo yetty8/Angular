@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { WildlifeComponent } from './wildlife.component';
 
-import { SkyComponent } from './wildlife.component';
+describe('WildlifeComponent', () => {
+  let component: WildlifeComponent;
+  let fixture: ComponentFixture<WildlifeComponent>;
 
-describe('SkyComponent', () => {
-  let component: SkyComponent;
-  let fixture: ComponentFixture<SkyComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SkyComponent]
-    })
-    .compileComponents();
+      imports: [WildlifeComponent]
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(SkyComponent);
+    fixture = TestBed.createComponent(WildlifeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

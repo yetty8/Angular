@@ -1,28 +1,19 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { WildlifeComponent } from './wildlife/wildlife.component'; 
-import { VolcanoComponent } from './volcano/volcano.component'; 
-import { AppComponent } from './app.component';
-import { OceanComponent } from './ocean/ocean.component'; 
-import { DesertComponent } from './desert/desert.component'; 
+import { Component } from '@angular/core';
+import { OceanComponent } from './ocean/ocean.component';
+import { DesertComponent } from './desert/desert.component';
+import { VolcanoComponent } from './volcano/volcano.component';
+import { WildlifeComponent } from './wildlife/wildlife.component';
 
-
-
-@NgModule({
-  declarations: [
-    AppComponent,
-    WildlifeComponent,
-    VolcanoComponent,
-    OceanComponent,
-    DesertComponent
-    
-    
-  ],
+@Component({
+  selector: 'app-root',
+  standalone: true,
   imports: [
-    BrowserModule
+    OceanComponent,
+    DesertComponent,
+    VolcanoComponent,
+    WildlifeComponent
   ],
-  providers: [],
-  bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
-export class AppModule { }
+export class AppComponent {}

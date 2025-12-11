@@ -1,47 +1,19 @@
-<nav class="navbar navbar-dark bg-dark" aria-label="Dark offcanvas navbar">
-  <div class="container-fluid">
-    <a class="navbar-brand custom-navbar-brand" href="#">Nature by Yetbarek</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarDark" aria-controls="offcanvasNavbarDark" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbarDark" aria-labelledby="offcanvasNavbarDarkLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasNavbarDarkLabel">Nature by Yetbarek</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-        
-        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <li class="nav-item">
-            <a class="nav-link" href="/Wildlife.mp4" target="_blank">Wild Life</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/VOLCANO.mp4" target="_blank">Volcano</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/ocean.mp4" target="_blank">Ocean</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/desert.mp4" target="_blank">Desert</a>
-          </li>
-        </ul>
-      </div>
+<div class="app-container">
+  <h1 class="title">Nature by Yetbarek</h1>
+  
+  <div class="videos-container">
+    <div class="video-wrapper" *ngFor="let scene of scenes; let i = index">
+      <h2 class="scene-title">{{ scene | titlecase }}</h2>
+      <video #videoPlayer 
+        [id]="'video-' + scene"
+        width="100%" 
+        autoplay 
+        muted 
+        loop
+        playsinline>
+        <source [src]="'assets/videos/' + scene + '.mp4'" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
     </div>
   </div>
-</nav>
-
-
-<div class="components-container">
-<div class="component-container">
-  <app-desert></app-desert>
-</div>
-<div class="component-container">
-  <app-volcano></app-volcano>
-</div>
-<div class="component-container">
-  <app-ocean></app-ocean>
-</div>
-<div class="component-container">
-  <app-wildlife></app-wildlife>
-</div>
 </div>
