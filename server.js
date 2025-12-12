@@ -4,6 +4,20 @@ const fs = require('fs');
 const app = express();
 
 const buildPath = path.join(__dirname, 'dist/natureAnimations');
+// Add MIME types for video files
+const mimeTypes = {
+  '.mp4': 'video/mp4',
+  '.webm': 'video/webm'
+};
+
+// Add this before your static file middleware
+app.use((req, res, next) => {
+  const ext = path.extname(req.url);
+  if (mimeTypes[ext]) {
+    res.setHeader('Content-Type', mimeTypes[ext]);
+  }
+  next();
+});
 
 // Check if build directory exists
 if (!fs.existsSync(buildPath)) {

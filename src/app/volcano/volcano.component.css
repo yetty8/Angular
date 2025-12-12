@@ -48,3 +48,19 @@
   height: auto;
   display: block;
 }
+.cta {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid white;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1.2em;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.cta:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
