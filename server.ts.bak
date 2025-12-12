@@ -1,0 +1,71 @@
+import express, { Request, Response } from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import fs from 'fs';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const app = express();
+
+// Enable CORS for all routes
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
+// Log all requests
+app.use((req, res, next) => {
+  console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
+  next();
+});
+
+// Serve static files
+const staticPath = path.join(__dirname, 'dist/natureAnimations/browser');
+app.use(express.static(staticPath));
+
+// Video streaming endpoint
+app.get('/videos/:name', (req, res) => {
+  const videoPath = path.join(staticPath, 'assets/videos', req.params.name);
+  const stat = fs.statSync(videoPath);
+  const fileSize = stat.size;
+  const range = req.headers.range;
+
+  if (range) {
+    const parts = range.replace(/bytes=/, '').split('-');
+    const start = parseInt(parts[0], 10);
+    const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
+    const chunkSize = (end - start) + 1;
+    const file = fs.createReadStream(videoPath, { start, end });
+    const head = {
+      'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+      'Accept-Ranges': 'bytes',
+      'Content-Length': chunkSize,
+      'Content-Type': 'video/mp4',
+    };
+
+    res.writeHead(206, head);
+    file.pipe(res);
+  } else {
+    const head = {
+      'Content-Length': fileSize,
+      'Content-Type': 'video/mp4',
+    };
+    res.writeHead(200, head);
+    fs.createReadStream(videoPath).pipe(res);
+  }
+});
+
+// Handle SPA routing
+app.get('*', (req: Request, res: Response) => {
+  res.sendFile(path.join(staticPath, 'index.html'));
+});
+
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server is running on port ${PORT}`);
+  console.log(`Serving files from: ${staticPath}`);
+  console.log(`Videos directory exists: ${fs.existsSync(path.join(staticPath, 'assets/videos'))}`);
+});
+
+export default app;
