@@ -43,5 +43,5 @@ Thumbs.db
 dist/
 .vercel
 
-/node_modules
 /dist
+/node_modules
