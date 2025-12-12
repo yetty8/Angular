@@ -1,16 +1,18 @@
+<!-- app.component.html -->
 <div class="app-container">
   <h1 class="title">Nature by Yetbarek</h1>
   
   <div class="videos-container">
-    <div class="video-wrapper" *ngFor="let scene of scenes; let i = index">
+    <div class="video-wrapper" *ngFor="let scene of scenes">
       <h2 class="scene-title">{{ scene | titlecase }}</h2>
-      <video #videoPlayer 
+      <video 
         [id]="'video-' + scene"
         width="100%" 
         autoplay 
         muted 
         loop
-        playsinline>
+        playsinline
+        (click)="toggleVideo(scene)">
         <source [src]="'assets/videos/' + scene + '.mp4'" type="video/mp4">
         Your browser does not support the video tag.
       </video>

@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { WildlifeComponent } from './wildlife/wildlife.component';
-import { VolcanoComponent } from './volcano/volcano.component';
-import { OceanComponent } from './ocean/ocean.component';
-import { DesertComponent } from './desert/desert.component';
-
-const routes: Routes = [
-  { path: 'wildlife', component: WildlifeComponent },
-  { path: 'volcano', component: VolcanoComponent },
-  { path: 'ocean', component: OceanComponent },
-  { path: 'desert', component: DesertComponent },
-  { path: '', redirectTo: '/wildlife', pathMatch: 'full' } // Redirect to wildlife by default
-];
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
+import { AppComponent } from './app.component';
+import { routes } from './app.routes';
+import { VideoService } from './services/video.service';
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(routes)
+  ],
+  providers: [VideoService],
+  bootstrap: [AppComponent]
 })
-export class AppRoutingModule { }
+export class AppModule { }
