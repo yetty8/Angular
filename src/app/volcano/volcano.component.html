@@ -8,8 +8,6 @@
     muted
     playsinline
     preload="auto"
-    (loadedmetadata)="onVideoLoad()"
-    (click)="videoPlayer.nativeElement.play()"
   >
     <source [src]="videoSource" type="video/mp4" />
     Your browser does not support the video tag.
@@ -18,6 +16,8 @@
   <div class="overlay">
     <h1 class="title">Volcanic Fury</h1>
     <p class="example">Fiery peaks, dramatic landscapes</p>
-    <button class="cta" (click)="videoPlayer.nativeElement.play()">Play Video</button>
+    <button *ngIf="videoError" class="cta" (click)="videoPlayer.nativeElement.play()">
+      Play Video
+    </button>
   </div>
 </div>
