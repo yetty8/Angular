@@ -2,12 +2,8 @@
   "name": "nature-animations",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "serve:ssr:natureAnimations": "node dist/nature-animations/server/server.mjs"
+    "build": "ng build --configuration production",
+    "start": "node server.js"
   },
   "private": true,
   "dependencies": {
@@ -21,7 +17,7 @@
     "@angular/platform-server": "^18.2.0",
     "@angular/router": "^18.2.0",
     "@angular/ssr": "^18.2.6",
-    "express": "^4.18.2",
+    "express": "^4.22.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10"
