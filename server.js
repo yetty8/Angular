@@ -1,26 +1,22 @@
 const express = require('express');
 const path = require('path');
-const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-const buildPath = path.join(__dirname, 'dist/nature-animations');
+// ✅ Correct Angular build output
+const buildPath = path.join(__dirname, 'dist/natureAnimations/browser');
 
-// 🔎 DEBUG: confirm build exists
-if (!fs.existsSync(buildPath)) {
-  console.error('❌ BUILD FOLDER NOT FOUND:', buildPath);
-  process.exit(1);
-}
+console.log('Serving Angular from:', buildPath);
 
-console.log('✅ Serving Angular from:', buildPath);
-
+// Serve Angular static files (JS, CSS, assets, videos)
 app.use(express.static(buildPath));
 
+// SPA fallback (Angular routing)
 app.get('*', (req, res) => {
   res.sendFile(path.join(buildPath, 'index.html'));
 });
 
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(`✅ Server running on port ${PORT}`);
 });
