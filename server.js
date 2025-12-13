@@ -4,19 +4,23 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-const BUILD_PATH = path.join(__dirname, 'dist/natureAnimations/browser');
+// Angular build output
+const buildPath = path.join(__dirname, 'dist/natureAnimations/browser');
 
-// ✅ 1. Static files FIRST (this enables range requests)
-app.use(express.static(BUILD_PATH, {
-  acceptRanges: true,
-  fallthrough: true
-}));
+// Safety check
+if (!require('fs').existsSync(buildPath)) {
+  console.error('❌ BUILD FOLDER NOT FOUND:', buildPath);
+}
 
-// ✅ 2. SPA fallback LAST
+// Serve Angular files
+app.use(express.static(buildPath));
+
+// SPA fallback (must be LAST)
 app.get('*', (req, res) => {
-  res.sendFile(path.join(BUILD_PATH, 'index.html'));
+  res.sendFile(path.join(buildPath, 'index.html'));
 });
 
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`✅ Server running on port ${PORT}`);
+  console.log(`📂 Serving from ${buildPath}`);
 });
