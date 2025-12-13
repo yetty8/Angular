@@ -1,26 +1,19 @@
 import { Component } from '@angular/core';
+import { OceanComponent } from './ocean/ocean.component';
+import { DesertComponent } from './desert/desert.component';
+import { VolcanoComponent } from './volcano/volcano.component';
+import { WildlifeComponent } from './wildlife/wildlife.component';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [
+    OceanComponent,
+    DesertComponent,
+    VolcanoComponent,
+    WildlifeComponent
+  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  scenes = ['desert', 'ocean', 'volcano', 'wildlife'];
-
-  videoURLs: { [key: string]: string } = {
-    desert: 'https://res.cloudinary.com/dffqpwber/video/upload/v1765589682/desert_z1vkbr.mp4',
-    ocean: 'https://res.cloudinary.com/dffqpwber/video/upload/v1765589683/ocean_ajxo0i.mp4',
-    volcano: 'https://res.cloudinary.com/dffqpwber/video/upload/v1765589686/volcano_hjbgpi.mp4',
-    wildlife: 'https://res.cloudinary.com/dffqpwber/video/upload/v1765589691/wildlife.mp4'
-  };
-
-  toggleVideo(scene: string) {
-    const video = document.getElementById('video-' + scene) as HTMLVideoElement;
-    if (video.paused) {
-      video.play();
-    } else {
-      video.pause();
-    }
-  }
-}
+export class AppComponent {}

@@ -6,10 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  scenes = ['desert', 'ocean', 'volcano', 'wildlife'];
+  title = 'Nature by Yetbarek';
 
-  // Make sure this object is initialized
-  videoURLs: { [key: string]: string } = {
+  // The scene names
+  scenes: string[] = ['desert', 'ocean', 'volcano', 'wildlife'];
+
+  // Cloudinary video URLs
+  videoURLs: Record<string, string> = {
     desert: 'https://res.cloudinary.com/dffqpwber/video/upload/v1765589682/desert_z1vkbr.mp4',
     ocean: 'https://res.cloudinary.com/dffqpwber/video/upload/v1765589683/ocean_ajxo0i.mp4',
     volcano: 'https://res.cloudinary.com/dffqpwber/video/upload/v1765589686/volcano_hjbgpi.mp4',

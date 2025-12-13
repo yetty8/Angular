@@ -1,9 +1,10 @@
 <div class="app-container">
-  <h1 class="title">Nature by Yetbarek</h1>
+  <h1 class="title">{{ title }}</h1>
   
   <div class="videos-container">
     <div class="video-wrapper" *ngFor="let scene of scenes">
       <h2 class="scene-title">{{ scene | titlecase }}</h2>
+      
       <video 
         [id]="'video-' + scene"
         width="100%" 
