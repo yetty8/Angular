@@ -1,22 +1,40 @@
-const express = require('express');
-const path = require('path');
+app.get('/assets/videos/:video', (req, res) => {
+  const fs = require('fs');
+  const videoPath = path.join(
+    BUILD_PATH,
+    'assets/videos',
+    req.params.video
+  );
 
-const app = express();
-const PORT = process.env.PORT || 8080;
+  if (!fs.existsSync(videoPath)) {
+    return res.status(404).end();
+  }
 
-// ✅ Correct Angular build output
-const buildPath = path.join(__dirname, 'dist/natureAnimations/browser');
+  const stat = fs.statSync(videoPath);
+  const fileSize = stat.size;
+  const range = req.headers.range;
 
-console.log('Serving Angular from:', buildPath);
+  if (range) {
+    const parts = range.replace(/bytes=/, '').split('-');
+    const start = parseInt(parts[0], 10);
+    const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
 
-// Serve Angular static files (JS, CSS, assets, videos)
-app.use(express.static(buildPath));
+    const chunkSize = end - start + 1;
+    const file = fs.createReadStream(videoPath, { start, end });
 
-// SPA fallback (Angular routing)
-app.get('*', (req, res) => {
-  res.sendFile(path.join(buildPath, 'index.html'));
-});
+    res.writeHead(206, {
+      'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+      'Accept-Ranges': 'bytes',
+      'Content-Length': chunkSize,
+      'Content-Type': 'video/mp4',
+    });
 
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`✅ Server running on port ${PORT}`);
+    file.pipe(res);
+  } else {
+    res.writeHead(200, {
+      'Content-Length': fileSize,
+      'Content-Type': 'video/mp4',
+    });
+    fs.createReadStream(videoPath).pipe(res);
+  }
 });
