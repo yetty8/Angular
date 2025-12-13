@@ -11,6 +11,7 @@
         muted 
         loop
         playsinline
+        *ngIf="videoURLs[scene]"
         (click)="toggleVideo(scene)">
         <source [src]="videoURLs[scene]" type="video/mp4">
         Your browser does not support the video tag.
