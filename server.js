@@ -28,7 +28,7 @@ app.get('*', (req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`✅ Server running on port ${PORT}`);
   console.log(`📂 Serving from ${buildPath}`);
-  console.log('\nTry these URLs:');
+  console.log(`\nTry these URLs:`);
   console.log(`- http://localhost:${PORT}/`);
-  console.log(`- Direct video: ${Object.values(videoURLs)[0]}`);
+  // Removed the line that was causing the error
 });
