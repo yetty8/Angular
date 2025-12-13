@@ -1,5 +1,24 @@
+const express = require('express');
+const path = require('path');
+const fs = require('fs');
+
+const app = express();
+const PORT = process.env.PORT || 8080;
+
+// ===== BUILD PATH =====
+const BUILD_PATH = path.join(__dirname, 'dist/natureAnimations/browser');
+
+if (!fs.existsSync(BUILD_PATH)) {
+  console.error('❌ BUILD FOLDER NOT FOUND:', BUILD_PATH);
+} else {
+  console.log('✅ Serving build from:', BUILD_PATH);
+}
+
+// ===== SERVE ANGULAR STATIC FILES =====
+app.use(express.static(BUILD_PATH));
+
+// ===== VIDEO STREAMING (RANGE SUPPORT) =====
 app.get('/assets/videos/:video', (req, res) => {
-  const fs = require('fs');
   const videoPath = path.join(
     BUILD_PATH,
     'assets/videos',
@@ -7,7 +26,7 @@ app.get('/assets/videos/:video', (req, res) => {
   );
 
   if (!fs.existsSync(videoPath)) {
-    return res.status(404).end();
+    return res.status(404).send('Video not found');
   }
 
   const stat = fs.statSync(videoPath);
@@ -35,6 +54,17 @@ app.get('/assets/videos/:video', (req, res) => {
       'Content-Length': fileSize,
       'Content-Type': 'video/mp4',
     });
+
     fs.createReadStream(videoPath).pipe(res);
   }
+});
+
+// ===== SPA FALLBACK =====
+app.get('*', (req, res) => {
+  res.sendFile(path.join(BUILD_PATH, 'index.html'));
+});
+
+// ===== START SERVER =====
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 Server running on port ${PORT}`);
 });
