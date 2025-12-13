@@ -1,5 +1,7 @@
+// server.js
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -8,16 +10,21 @@ const PORT = process.env.PORT || 8080;
 const buildPath = path.join(__dirname, 'dist/natureAnimations/browser');
 
 // Safety check
-if (!require('fs').existsSync(buildPath)) {
+if (!fs.existsSync(buildPath)) {
   console.error('❌ BUILD FOLDER NOT FOUND:', buildPath);
 }
 
-// Serve Angular files
+// Serve static files
 app.use(express.static(buildPath));
 
-// SPA fallback (must be LAST)
+// SPA fallback for Angular routing
 app.get('*', (req, res) => {
-  res.sendFile(path.join(buildPath, 'index.html'));
+  res.sendFile(path.join(buildPath, 'index.html'), (err) => {
+    if (err) {
+      console.error('Error sending index.html:', err);
+      res.status(500).send('Something went wrong!');
+    }
+  });
 });
 
 app.listen(PORT, '0.0.0.0', () => {
