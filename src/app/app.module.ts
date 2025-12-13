@@ -6,6 +6,7 @@ import { OceanComponent } from './ocean/ocean.component';
 import { DesertComponent } from './desert/desert.component';
 import { VolcanoComponent } from './volcano/volcano.component';
 import { WildlifeComponent } from './wildlife/wildlife.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
