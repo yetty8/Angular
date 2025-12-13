@@ -1,24 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-import { OceanComponent } from './ocean/ocean.component';
-import { DesertComponent } from './desert/desert.component';
-import { VolcanoComponent } from './volcano/volcano.component';
-import { WildlifeComponent } from './wildlife/wildlife.component';
 import { CommonModule } from '@angular/common';
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    OceanComponent,
-    DesertComponent,
-    VolcanoComponent,
-    WildlifeComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    CommonModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

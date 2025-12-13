@@ -1,15 +1,19 @@
 <div class="app-container">
   <h1 class="title">{{ title }}</h1>
   <div class="videos-container">
-    <div class="video-wrapper">
-      <h2>Test Video with Controls</h2>
-      <div style="padding: 20px; background: #f0f0f0; margin: 20px; border-radius: 5px;">
-        <video width="400" controls autoplay muted playsinline>
-          <source src="https://res.cloudinary.com/dffqpwber/video/upload/v1765589683/ocean_ajxo0i.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        <p>Video Source: {{ 'https://res.cloudinary.com/dffqpwber/video/upload/v1765589683/ocean_ajxo0i.mp4' }}</p>
-      </div>
+    <div class="video-wrapper" *ngFor="let scene of scenes">
+      <h2 class="scene-title">{{ scene | titlecase }}</h2>
+      <video
+        [id]="'video-' + scene"
+        width="100%"
+        autoplay
+        muted
+        loop
+        playsinline
+        (click)="toggleVideo(scene)">
+        <source [src]="videoURLs[scene]" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
     </div>
   </div>
 </div>
