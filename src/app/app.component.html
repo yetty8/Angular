@@ -2,14 +2,14 @@
   <h1 class="title">{{ title }}</h1>
   <div class="videos-container">
     <div class="video-wrapper">
-      <h2 class="scene-title">Ocean</h2>
+      <h2>Test Video with Controls</h2>
       <div style="padding: 20px; background: #f0f0f0; margin: 20px; border-radius: 5px;">
-  <h2>Test Video</h2>
-  <video width="400" controls>
-    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</div>
+        <video width="400" controls autoplay muted playsinline>
+          <source src="https://res.cloudinary.com/dffqpwber/video/upload/v1765589683/ocean_ajxo0i.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <p>Video Source: {{ 'https://res.cloudinary.com/dffqpwber/video/upload/v1765589683/ocean_ajxo0i.mp4' }}</p>
+      </div>
     </div>
   </div>
 </div>
