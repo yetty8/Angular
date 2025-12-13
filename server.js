@@ -9,15 +9,10 @@ const buildPath = path.join(__dirname, 'dist/nature-animations');
 app.use(express.static(buildPath));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(buildPath, 'index.html'), err => {
-    if (err) {
-      console.error(err);
-      res.status(404).send('Not found');
-    }
-  });
+  res.sendFile(path.join(buildPath, 'index.html'));
 });
 
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
-  console.log(`Serving from ${buildPath}`);
+  console.log(`Serving Angular from ${buildPath}`);
 });
