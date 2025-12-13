@@ -1,53 +1,21 @@
 <div class="app-container">
   <h1 class="title">{{ title }}</h1>
-  
+
   <div class="videos-container">
-    <div class="scene desert" role="region" aria-label="Desert scene">
-      <video [id]="'video-desert'" autoplay loop muted playsinline (click)="toggleVideo('desert')">
-        <source [src]="videoURLs['desert']" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <div class="overlay">
-        <h2 class="scene-title">Desert Dunes</h2>
-        <p class="subtitle">Golden light, calm horizons</p>
-        <button class="cta">Explore</button>
-      </div>
-    </div>
+    <div class="video-wrapper" *ngFor="let scene of scenes">
+      <h2 class="scene-title">{{ scene | titlecase }}</h2>
 
-    <div class="scene ocean" role="region" aria-label="Ocean scene">
-      <video [id]="'video-ocean'" autoplay loop muted playsinline (click)="toggleVideo('ocean')">
-        <source [src]="videoURLs['ocean']" type="video/mp4">
+      <video
+        [id]="'video-' + scene"
+        width="100%"
+        autoplay
+        muted
+        loop
+        playsinline
+        (click)="toggleVideo(scene)">
+        <source [src]="getVideoURL(scene)" type="video/mp4">
         Your browser does not support the video tag.
       </video>
-      <div class="overlay">
-        <h2 class="scene-title">Ocean Waves</h2>
-        <p class="subtitle">Refreshing blue, endless horizon</p>
-        <button class="cta">Explore</button>
-      </div>
-    </div>
-
-    <div class="scene volcano" role="region" aria-label="Volcano scene">
-      <video [id]="'video-volcano'" autoplay loop muted playsinline (click)="toggleVideo('volcano')">
-        <source [src]="videoURLs['volcano']" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <div class="overlay">
-        <h2 class="scene-title">Volcanic Fury</h2>
-        <p class="subtitle">Fiery peaks, dramatic landscapes</p>
-        <button class="cta">Explore</button>
-      </div>
-    </div>
-
-    <div class="scene wildlife" role="region" aria-label="Wildlife scene">
-      <video [id]="'video-wildlife'" autoplay loop muted playsinline (click)="toggleVideo('wildlife')">
-        <source [src]="videoURLs['wildlife']" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <div class="overlay">
-        <h2 class="scene-title">Wildlife Wonders</h2>
-        <p class="subtitle">Lush forests, vibrant creatures</p>
-        <button class="cta">Explore</button>
-      </div>
     </div>
   </div>
 </div>

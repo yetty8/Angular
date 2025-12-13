@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Nature by Yetbarek';
 
-  // Array of scene names
+  // Scenes
   scenes: string[] = ['desert', 'ocean', 'volcano', 'wildlife'];
 
   // Cloudinary video URLs
@@ -19,7 +19,12 @@ export class AppComponent {
     wildlife: 'https://res.cloudinary.com/dffqpwber/video/upload/v1765589691/wildlife.mp4'
   };
 
-  // Toggle play/pause when video is clicked
+  // Get video URL for a scene
+  getVideoURL(scene: string): string {
+    return this.videoURLs[scene];
+  }
+
+  // Toggle play/pause
   toggleVideo(scene: string) {
     const video = document.getElementById('video-' + scene) as HTMLVideoElement;
     if (video) {
