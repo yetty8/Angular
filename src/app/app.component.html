@@ -4,8 +4,8 @@
   <div class="videos-container">
     <div class="video-wrapper" *ngFor="let scene of scenes">
       <h2 class="scene-title">{{ scene | titlecase }}</h2>
-
       <video
+        *ngIf="videoURLs[scene]"
         [id]="'video-' + scene"
         width="100%"
         autoplay
@@ -13,7 +13,7 @@
         loop
         playsinline
         (click)="toggleVideo(scene)">
-        <source [src]="getVideoURL(scene)" type="video/mp4">
+        <source [src]="videoURLs[scene]" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
