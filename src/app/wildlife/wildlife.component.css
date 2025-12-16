@@ -85,3 +85,18 @@ video {
   background: rgba(255, 255, 255, 0.3);
   transform: scale(1.05);
 }
+/* In src/styles.css */
+* {
+  border: 1px solid red !important; /* Debug borders */
+}
+
+video {
+  border: 3px solid blue !important; /* Make videos clearly visible */
+  background-color: #000 !important;
+  min-height: 200px;
+}
+.video-container {
+  position: relative;
+  z-index: 1; /* Ensure it's above other elements */
+  background: #000; /* Black background */
+}

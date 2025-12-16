@@ -10,7 +10,8 @@ const routes: Routes = [
   { path: 'volcano', component: VolcanoComponent },
   { path: 'ocean', component: OceanComponent },
   { path: 'desert', component: DesertComponent },
-  { path: '', redirectTo: '/wildlife', pathMatch: 'full' } // Redirect to wildlife by default
+  { path: '', redirectTo: '/wildlife', pathMatch: 'full' }, // Redirect to wildlife by default
+  { path: '**', redirectTo: '/wildlife' } // Wildcard route for unknown paths
 ];
 
 @NgModule({

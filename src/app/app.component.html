@@ -1,19 +1,41 @@
 <div class="app-container">
-  <h1 class="title">{{ title }}</h1>
-  <div class="videos-container">
-    <div class="video-wrapper" *ngFor="let scene of scenes">
-      <h2 class="scene-title">{{ scene | titlecase }}</h2>
-      <video
-        [id]="'video-' + scene"
-        width="100%"
-        autoplay
-        muted
-        loop
-        playsinline
-        (click)="toggleVideo(scene)">
-        <source [src]="videoURLs[scene]" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </div>
+  <!-- Title Section -->
+  <div class="title-overlay">
+    <h1 class="title">NATURE BY YETBAREK</h1>
   </div>
+
+  <!-- Ocean Section -->
+  <section class="video-section" id="ocean">
+    <video #oceanVideo autoplay muted loop playsinline (click)="togglePlay(oceanVideo)">
+      <source [src]="videoURLs['ocean']" type="video/mp4">
+    </video>
+    <div class="nav-buttons">
+      <button class="nav-button" [class.active]="currentSection === 'ocean'" (click)="scrollTo('ocean')">Ocean</button>
+      <button class="nav-button" [class.active]="currentSection === 'volcano'" (click)="scrollTo('volcano')">Volcano</button>
+      <button class="nav-button" [class.active]="currentSection === 'desert'" (click)="scrollTo('desert')">Desert</button>
+      <button class="nav-button" [class.active]="currentSection === 'wildlife'" (click)="scrollTo('wildlife')">Wildlife</button>
+    </div>
+  </section>
+
+  <!-- Volcano Section -->
+  <section class="video-section" id="volcano">
+    <video #volcanoVideo autoplay muted loop playsinline (click)="togglePlay(volcanoVideo)">
+      <source [src]="videoURLs['volcano']" type="video/mp4">
+    </video>
+  </section>
+
+  <!-- Desert Section -->
+  <section class="video-section" id="desert">
+    <video #desertVideo autoplay muted loop playsinline (click)="togglePlay(desertVideo)">
+      <source [src]="videoURLs['desert']" type="video/mp4">
+    </video>
+  </section>
+
+  <!-- Wildlife Section -->
+  <section class="video-section" id="wildlife">
+    <video #wildlifeVideo autoplay muted loop playsinline (click)="togglePlay(wildlifeVideo)">
+      <source [src]="videoURLs['wildlife']" type="video/mp4">
+    </video>
+  </section>
 </div>
+

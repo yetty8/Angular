@@ -6,29 +6,23 @@ const PORT = process.env.PORT || 8080;
 // Enable CORS
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
 
 // Serve static files
-const buildPath = path.join(__dirname, 'dist/natureAnimations/browser');
-app.use(express.static(buildPath, {
-  setHeaders: (res, path) => {
-    if (path.endsWith('.mp4')) {
-      res.set('Content-Type', 'video/mp4');
-    }
-  }
-}));
+const distPath = path.join(__dirname, 'dist/natureAnimations/browser');
+app.use(express.static(distPath));
 
-// Handle SPA routing
+// Handle SPA
 app.get('*', (req, res) => {
-  res.sendFile(path.join(buildPath, 'index.html'));
+  res.sendFile(path.join(distPath, 'index.html'));
 });
 
-app.listen(PORT, '0.0.0.0', () => {
+// Start server
+app.listen(PORT, () => {
   console.log(`✅ Server running on port ${PORT}`);
-  console.log(`📂 Serving from ${buildPath}`);
-  console.log(`\nTry these URLs:`);
-  console.log(`- http://localhost:${PORT}/`);
-  // Removed the line that was causing the error
+  console.log(`📂 Serving from ${distPath}`);
+  console.log(`🌐 Open: http://localhost:${PORT}`);
 });

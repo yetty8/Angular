@@ -1,207 +1,129 @@
-/* ===========================
-   Main Container & Typography
-=========================== */
-.app-container {
-  padding: 0;
+/* Reset & Base Styles */
+* {
   margin: 0;
-  max-width: 100%;
-  min-height: 100vh;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
   overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Hide scrollbar but keep functionality */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* App Container */
+.app-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* Title Overlay */
+.title-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  text-align: center;
+  padding: 20px 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
 }
 
 .title {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #fff;
-  font-size: 3rem; /* Increased from 2.5rem */
-  font-weight: 700; /* Made bolder */
-  text-shadow: 
-    2px 2px 4px rgba(0, 0, 0, 0.8),
-    0 0 10px rgba(255, 255, 255, 0.5); /* Added glow effect */
-  z-index: 100;
-  text-align: center;
-  width: 100%;
-  font-family: 'Arial Black', 'Arial Bold', sans-serif; /* More impactful font */
-  letter-spacing: 1px; /* Slightly more spacing between letters */
-  text-transform: uppercase; /* Optional: makes text all caps */
-  padding: 10px 20px; /* Added some padding */
-  background: linear-gradient(90deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 100%); /* Subtle gradient background */
-  border-radius: 0 0 10px 10px; /* Rounded bottom corners */
-}
-
-/* Make it more compact on mobile */
-@media (max-width: 768px) {
-  .title {
-    font-size: 1.8rem;
-    padding: 8px 15px;
-    top: 0;
-    border-radius: 0;
-  }
-}
-
-
-.videos-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  padding: 20px;
-}
-
-.video-wrapper {
-  position: relative;
-  overflow: hidden;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-video {
-  width: 100%;
-  display: block;
-  cursor: pointer;
-}
-
-.scene-title {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
   color: white;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 8px 16px;
-  border-radius: 20px;
+  font-size: 2.5rem;
+  font-weight: 900;
+  font-family: 'Arial Black', sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
   margin: 0;
+  padding: 10px 20px;
+  display: inline-block;
 }
 
-/* ===========================
-   Navigation Dots
-=========================== */
-.nav-dots {
-  position: fixed;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  z-index: 100;
-}
-
-.nav-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.5);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
-}
-
-.nav-dot.active {
-  background-color: white;
-  transform: scale(1.2);
-  border-color: rgba(255, 255, 255, 0.8);
-}
-
-/* ===========================
-   Responsive Design
-=========================== */
-@media (max-width: 768px) {
-  .title {
-    font-size: 1.8rem;
-    top: 10px;
-  }
-  
-  .scene-title {
-    font-size: 1.2rem;
-    bottom: 30px;
-    width: 90%;
-  }
-  
-  .nav-dots {
-    right: 10px;
-    gap: 10px;
-  }
-  
-  .nav-dot {
-    width: 10px;
-    height: 10px;
-  }
-}
-
-/* ===========================
-   Fade-in effect for scene changes
-=========================== */
-.fade {
-  animation: fadeIn 0.8s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* ===========================
-   Scrollbar Styling
-=========================== */
-/* For WebKit (Chrome, Safari, newer Edge) */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1);
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.5);
-}
-
-/* For Firefox */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.3) rgba(0, 0, 0, 0.1);
+/* Video Sections */
+.video-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 
 video {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  cursor: pointer;
-}
-
-.overlay {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+}
+
+/* Navigation Buttons */
+.nav-buttons {
+  position: fixed;
+  bottom: 30px;
+  left: 0;
+  right: 0;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  color: white;
-  text-align: center;
-  background: rgba(0, 0, 0, 0.3);
+  gap: 15px;
+  z-index: 100;
+  padding: 10px;
 }
 
-.cta {
-  margin-top: 20px;
-  padding: 10px 20px;
+.nav-button {
+  padding: 10px 25px;
   background: rgba(255, 255, 255, 0.2);
-  border: 2px solid white;
   color: white;
-  border-radius: 25px;
+  border: 2px solid white;
+  border-radius: 30px;
   cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: capitalize;
   transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
 }
 
-.cta:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: scale(1.05);
+.nav-button:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: translateY(-3px);
+}
+
+.nav-button.active {
+  background: white;
+  color: #000;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.8rem;
+    padding: 8px 15px;
+  }
+  
+  .title-overlay {
+    padding: 15px 0;
+  }
+  
+  .nav-buttons {
+    bottom: 20px;
+    gap: 10px;
+  }
+  
+  .nav-button {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
 }
